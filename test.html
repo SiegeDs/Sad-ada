@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="myGame">
+      First Name:<input type="text" id="first_name" v-model="first_name" /> Last
+      Last Name: <input type="text" id="last_name" v-model="last_name" />
+      <button v-onclick="handleUser()">Submit</button>
+
+      <h3>Names</h3>
+      <table>
+        <thead>
+          <tr>
+            Action
+          </tr>
+          <tr>
+            First Name
+          </tr>
+          <tr>
+            Last Name
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </body>
+</html>

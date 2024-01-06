@@ -7,23 +7,6 @@
     <title><?php echo $title; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/custom.css">
-    <style>
-        .text {
-            color: #f1f2e8;
-            font-size: 16px;
-            font-weight: 700;
-            word-wrap: break-word;
-            text-align: center;
-        }
-
-        .texts {
-            color: #000000;
-            font-size: 32px;
-            font-weight: 700;
-            word-wrap: break-word;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -36,10 +19,12 @@
                         SYSTEM <img src="./images/snowflake.png" width="20" />
                     </div>
                     <div class="nav">
-                        <a class="btn <?= (($title == 'Sign in') ? 'btn-light"' : "btn-dark") ?>" href="signin.php">Sign In</a>
-                        <a class="btn <?= (($title == 'Sign up') ? 'btn-light"' : "btn-dark") ?>" href="signup.php">Sign Up</a>
                         <a class="nav-link <?= (($title == 'Features') ? 'active text-warning' : "text-light") ?>" href="features.php">Features</a>
                         <a class="nav-link <?= (($title == 'About') ? 'active text-warning' : "text-light") ?>" href="about.php">About</a>
+                    </div>
+                    <div class="nav">
+                        <a class="btn <?= (($title == 'Sign in') ? 'btn-light"' : "btn-dark") ?>" href="signin.php">Sign In</a>
+                        <a class="btn <?= (($title == 'Sign up') ? 'btn-light"' : "btn-dark") ?>" href="signup.php">Sign Up</a>
                     </div>
                 </div>
             </div>

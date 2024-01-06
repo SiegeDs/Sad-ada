@@ -12,10 +12,13 @@ while ($rowYears = mysqli_fetch_assoc($resultYears)) {
 ?>
 
 <html>
+
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart(selectedYear) {
@@ -45,6 +48,7 @@ while ($rowYears = mysqli_fetch_assoc($resultYears)) {
         }
     </script>
 </head>
+
 <body>
     <form>
         <label for="year">Select Year:</label>
@@ -59,4 +63,5 @@ while ($rowYears = mysqli_fetch_assoc($resultYears)) {
 
     <div id="piechart" style="width: 500px; height: 500px;"></div>
 </body>
+
 </html>

@@ -1,0 +1,70 @@
+:root {
+  --background: #f1f2e8;
+}
+
+body {
+  background-color: var(--background);
+}
+
+.text {
+  color: var(--background);
+  font-size: 16px;
+  font-weight: 700;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.texts {
+  color: #000000;
+  font-size: 32px;
+  font-weight: 700;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.time {
+  color: var(--background);
+  font-size: 14px;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.notification-item {
+  padding: 10px;
+}
+
+.notification-item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.notification-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-buttons {
+  display: flex;
+  gap: 5px;
+  /* Adjust the gap as needed */
+}
+
+.notification-item:hover {
+  background-color: #f0f0f0;
+  /* Add your desired background color */
+  cursor: pointer;
+  /* Change cursor to a pointer to indicate interactivity */
+}
+
+.notification-list {
+  max-height: 300px;
+  /* Set the maximum height for the container */
+  overflow-y: auto;
+  /* Add a vertical scrollbar when content overflows */
+}

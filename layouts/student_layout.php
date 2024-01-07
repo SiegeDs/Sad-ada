@@ -20,8 +20,8 @@
                         SYSTEM <img src="./images/snowflake.png" width="20" />
                     </div>
                     <nav class="nav m-2">
-                        <a class="nav-link <?= (($title == 'Job Charts') ? 'active text-warning' : "text-light") ?>" aria-current="page" href="sscreen.php">
-                            Chart
+                        <a class="nav-link <?= (($title == 'Manage Account') ? 'active text-warning' : "text-light") ?>" aria-current="page" href="manage_acc.php">
+                            Manage Account
                         </a>
                         <a class="nav-link <?= (($title == 'Newsfeed') ? 'active text-warning' : "text-light") ?>" href="newsfeed.php">
                             Newsfeed

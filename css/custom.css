@@ -1,9 +1,15 @@
 :root {
   --background: #f1f2e8;
+  --background2: #dde0c7;
 }
 
 body {
   background-color: var(--background);
+}
+
+.feature {
+  background-color: var(--background2);
+  border-top-left-radius: 50px;
 }
 
 .text {

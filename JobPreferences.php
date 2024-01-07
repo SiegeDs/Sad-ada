@@ -1,3 +1,7 @@
+<?php 
+include 'database.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -321,7 +325,7 @@
                         High grades in the course or subject area(s) related to
                         the course
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -329,7 +333,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -341,7 +345,7 @@
                     <tr>
                       <td>Good grades in high school</td>
 
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -349,7 +353,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -360,7 +364,7 @@
                     </tr>
                     <tr>
                       <td>Influence of parents or relatives</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -368,7 +372,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -379,7 +383,7 @@
                     </tr>
                     <tr>
                       <td>Peer Influence</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -387,7 +391,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -398,7 +402,7 @@
                     </tr>
                     <tr>
                       <td>Influence of parents or relatives</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -406,7 +410,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -417,7 +421,7 @@
                     </tr>
                     <tr>
                       <td>Inspired by a role model</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -425,7 +429,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -436,7 +440,7 @@
                     </tr>
                     <tr>
                       <td>Prospect for immediate employment</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -444,7 +448,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -455,7 +459,7 @@
                     </tr>
                     <tr>
                       <td>Status or prestige of the profession</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -463,7 +467,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -476,7 +480,7 @@
                       <td>
                         Availability of course offering in chosen institution
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -484,7 +488,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -495,7 +499,7 @@
                     </tr>
                     <tr>
                       <td>Prospect of career advancement</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -503,7 +507,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -514,7 +518,7 @@
                     </tr>
                     <tr>
                       <td>Affordable for the family</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -522,7 +526,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -533,7 +537,7 @@
                     </tr>
                     <tr>
                       <td>Prospect of attractive compensation</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -541,7 +545,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -552,7 +556,7 @@
                     </tr>
                     <tr>
                       <td>Opportunity for employment abroad</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -560,7 +564,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -571,7 +575,7 @@
                     </tr>
                     <tr>
                       <td>No particular choice or no better idea</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -579,7 +583,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1291,7 +1295,7 @@
                   <tbody>
                     <tr>
                       <td>Rank or Clerical</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1299,7 +1303,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1311,7 +1315,7 @@
                     <tr>
                       <td>Professional, Technical or Supervisory</td>
 
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1319,7 +1323,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1330,7 +1334,7 @@
                     </tr>
                     <tr>
                       <td>Managerial or Executive</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1338,7 +1342,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1349,7 +1353,7 @@
                     </tr>
                     <tr>
                       <td>Self-employed</td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1357,7 +1361,7 @@
                           id="flexCheckDefault"
                         />
                       </td>
-                      <td>
+                      <td style="text-align: center">
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1458,8 +1462,9 @@
                 />
 
                 <label class="form-label m-2">
-                  what competencies learned in college did you find very useful
-                  in your first job? You may check () more than one answer.
+                  14.) what competencies learned in college did you find very
+                  useful in your first job? You may check () more than one
+                  answer.
                 </label>
                 <p class="form-check-label" for="flexCheckDefault">
                   <input
@@ -1516,7 +1521,9 @@
                   Critical Thinking skills
                 </p>
               </div>
-              <button type="button" class="btn btn-dark m-3">Sign Up</button>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-dark m-3">Save</button>
+              </div>
             </div>
           </div>
         </div>

@@ -10,6 +10,15 @@ $login_user = $_SESSION["Login_id"];
 include 'database.php';
 
 // get logged in user's info
+$sqlYears = "SELECT DISTINCT year FROM employed";
+$resultYears = mysqli_query($conn, $sqlYears);
+$years = array();
+while ($rowYears = mysqli_fetch_assoc($resultYears)) {
+    $years[] = $rowYears['year'];
+}
+
+
+
 $sql = "SELECT * FROM `users` WHERE `StudentNo` = '$login_user'";
 $result = mysqli_query($conn, $sql);
 if ($result->num_rows > 0) {
@@ -56,7 +65,7 @@ $post_results = mysqli_query($conn, $sql_post);
 
 ob_start();
 ?>
-<div class="container pt-5">
+<div class="container p-5">
     <div class="row">
         <div class="col-3">
             <div class="align-baseline bg-white shadowed rounded-4 d-flex flex-column align-items-start">
@@ -68,6 +77,24 @@ ob_start();
                     <img src="./images/add.png" />
                     <span>Job Preferences</span>
                 </button>
+                <form class="w-100">
+
+                    <div id="piechart" class="w-100"></div>
+                    <div class="px-4">
+                        <label for="year">Select Year:</label>
+                        <div class="d-flex">
+                            <select class="form-select align-self-end" id="year" name="year" onchange="drawChart(this.value)">
+                                <option value=""> Select</option>
+                                <?php foreach ($years as $year) { ?>
+                                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                                <?php } ?>
+                            </select>
+                            <input type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+
+
             </div>
         </div>
         <div class="col">
@@ -86,23 +113,29 @@ ob_start();
                 </button>
             </div>
             <?php while ($post = $post_results->fetch_assoc()) : ?>
-                <div class="bg-white shadowed rounded-3 my-4">
+                <div class="bg-white shadowed rounded-3 my-4" style="max-height: 500px;">
                     <!-- Upper Section with Image and Name -->
                     <div class="p-2 d-flex align-items-center border-bottom gap-2">
                         <img src="<?= $image ?>" alt="Profile Image" class="rounded-circle avatar-post">
                         <span class="fw-bold"><?= $post['First_Name'] . ' ' . $post['Last_Name'] ?></span>
                     </div>
                     <!-- Center Section with Message and Image -->
-                    <div class="p-2 d-flex flex-column">
+                    <div class="p-5 d-flex flex-column">
                         <?php if ($post['message']) : ?>
                             <p><?= $post['message'] ?></p>
                         <?php endif ?>
-                        <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="w-100 rounded-2">
+                        <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="rounded-2" style="max-height: 200px; max-width: 200px;">
                     </div>
                 </div>
             <?php endwhile ?>
         </div>
-        <div class="col-3"></div>
+        <div class="col-3">
+            <div class="align-baseline bg-white shadowed rounded-4 d-flex flex-column align-items-start">
+                <p class="h5 p-4">
+                    Announcements
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Modal -->
@@ -164,6 +197,39 @@ ob_start();
     };
 
     s0.parentNode.insertBefore(s1, s0);
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart(selectedYear) {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Status');
+        data.addColumn('number', 'Count');
+
+        <?php
+        if (isset($_GET['year'])) {
+            $selectedYear = $_GET['year'];
+            $sqlData = "SELECT user_employed, user_unemployed FROM employed WHERE year = $selectedYear";
+            $resultData = mysqli_query($conn, $sqlData);
+            $row = mysqli_fetch_assoc($resultData);
+            $employedCount = $row['user_employed'];
+            $unemployedCount = $row['user_unemployed'];
+            echo "data.addRows([['Employed', $employedCount], ['Unemployed', $unemployedCount]]);";
+        }
+        ?>
+
+        var options = {
+            title: 'Students and their contribution'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
 </script>
 <!--End of Tawk.to Script-->
 <?php

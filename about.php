@@ -2,40 +2,14 @@
 $title = "About";
 ob_start();
 ?>
-<div class="container text-center">
-  <div class="row">
-    <div class="col">
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
-      <div style="text-align: left">
-        <span style="
-                color: #272d5e;
-                font-size: 30px;
-                font-weight: 700;
-                text-decoration: underline;
-                word-wrap: break-word;
-              ">ABOUT</span>
-        <span style="
-                color: #272d5e;
-                font-size: 30px;
-                font-weight: 700;
-                word-wrap: break-word;
-              ">
-        </span>
-        <span style="color: #272d5e; font-size: 20px; font-weight: 700">Graduates’ Tracing System</span>
+<div class="container py-5">
+  <div class="row align-items-center g-5">
+    <div class="col col-12 col-md-6 subtle">
+      <div>
+        <span class="fw-bold text-decoration-underline h2">ABOUT</span>
+        <span class="h4"> Graduates' Tracing System</span>
       </div>
-      <div style="
-              color: #272d5e;
-              font-size: 18px;
-              font-weight: 400;
-              text-align: left;
-            ">
+      <div class="mt-2 fs-6">
         The “Graduates' Tracing System" is a comprehensive tracer system
         designed to track the employment status of Bachelor of Science in
         Information Technology graduates from Leyte Normal University. This
@@ -49,12 +23,8 @@ ob_start();
         educational programs on the workforce.
       </div>
     </div>
-    <div class="col">
-      <br />
-      <br />
-      <br />
-
-      <img src="images/about.png" style="width: 500px; height: 500px" />
+    <div class="col col-12 col-md-6 text-center">
+      <img src="images/about.png" class="w-100" />
     </div>
   </div>
 </div>

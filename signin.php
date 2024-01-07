@@ -42,48 +42,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ob_start();
 ?>
 <div class="container mt-5 pt-5">
-    <div class="row">
-        <div class="col"><img src="./images/profile.png" /></div>
+    <div class="row gap-2 justify-content-around">
+        <div class="col text-center"><img src="./images/profile.png" /></div>
         <div class="col">
-            <div class="card p-3 m-3" style="width: 80%">
+            <div class="card p-3 md-3 m-md-5">
                 <div class="card-body">
                     <p class="fs-3 fw-bold text-center">
                         Sign In |
-                        <span class="fs-6 fw-normal">Don't have an Account yet?</span><span class="fs-6 bold"> Sign
-                            Up here.</span>
+                        <span class="fs-6 fw-normal">Don't have an Account yet?</span>
+                        <span class="fs-6 bold">Sign up here.</span>
                     </p>
-                    <form action="signin.php" method="POST">
-                        <div class="container text-center">
-                            <div class="row">
-                                <div class="col">
-                                    <input class="my-3 form-control" type="text" name="student_no" placeholder="Student No." />
-                                    <input class="my-3 form-control" type="password" name="password" placeholder="Password" />
-                                </div>
+                    <form action="signin.php" method="POST" class="container">
+                        <div class="row">
+                            <div class="col">
+                                <input class="my-3 form-control" type="text" name="student_no" placeholder="Student No." />
+                                <input class="my-3 form-control" type="password" name="password" placeholder="Password" />
                             </div>
                         </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <a class="nav-link d-flex flex-row-reverse" href="#">Forgot Password?</a>
-                                </div>
+                        <div class="d-flex justify-content-between flex-wrap gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Remember Me
+                                </label>
                             </div>
+                            <a class="nav-link d-flex flex-row-reverse" href="#">Forgot Password?</a>
                         </div>
-                        <div class="d-flex justify-content-center m-3">
-                            <button type="submit" class="btn btn-dark m-3">Sign In</button>
-                        </div>
-                    </form>
                 </div>
+                <div class="d-flex justify-content-center m-3">
+                    <button type="submit" class="btn btn-dark">Sign In</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 <?php
 $content = ob_get_clean();

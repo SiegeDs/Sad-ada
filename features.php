@@ -1,57 +1,26 @@
 <?php
 $title = "Features";
+$features = array(
+  "Employment Status" => "./images/chart.png",
+  "Job Offers" => "./images/document.png",
+  "Upload Job Opportunities" => "./images/upload.png"
+);
 ob_start();
 ?>
-<div class="container text-center">
-  <div class="row p-5 m-5 gx-5">
-    <div class="col">
-      <div class="card d-flex justify-content-between ratio ratio-1x1" style="
-              position: relative;
-              background: #dde0c7;
-              border-top-left-radius: 50px;
-            ">
-        <div class="p-4">
-          <img src="./images/chart.png" style="width: 40%; position: absolute; top: -45px; right: -45px" />
-          <br />
-          <br />
-          <br />
-          <br />
-          <h2>Employment Status</h2>
+<div class="container">
+  <div class="row p-5 m-5 g-5">
+    <?php foreach ($features as $feature => $img) : ?>
+      <div class="col col-12 col-md-6 col-xl-4">
+        <div class="card feature ratio ratio-1x1">
+          <div>
+            <img src="<?= $img ?>" />
+          </div>
+          <div class="p-4 d-flex justify-content-center align-items-center text-center">
+            <h2><?= $feature ?></h2>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card d-flex justify-content-between ratio ratio-1x1" style="
-              position: relative;
-              background: #dde0c7;
-              border-top-left-radius: 50px;
-            ">
-        <div class="p-4">
-          <img src="./images/document.png" style="width: 40%; position: absolute; top: -45px; right: -45px" />
-          <br />
-          <br />
-          <br />
-          <br />
-          <h2>Job Offers</h2>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card d-flex justify-content-between ratio ratio-1x1" style="
-              position: relative;
-              background: #dde0c7;
-              border-top-left-radius: 50px;
-            ">
-        <div class="p-4">
-          <img src="./images/upload.png" style="width: 40%; position: absolute; top: -45px; right: -45px" />
-          <br />
-          <br />
-          <br />
-          <br />
-          <h2>Upload Job Opportunities</h2>
-        </div>
-      </div>
-    </div>
+    <?php endforeach; ?>
   </div>
 </div>
 <?php

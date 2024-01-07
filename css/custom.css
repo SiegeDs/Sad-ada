@@ -1,15 +1,27 @@
 :root {
   --background: #f1f2e8;
   --background2: #dde0c7;
+  --textcolor: #272d5e;
 }
 
 body {
   background-color: var(--background);
 }
 
+.subtle {
+  color: var(--textcolor);
+}
+
 .feature {
   background-color: var(--background2);
   border-top-left-radius: 50px;
+}
+
+.feature img {
+  width: 40%;
+  position: absolute;
+  top: -20%;
+  right: -10%;
 }
 
 .text {

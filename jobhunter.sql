@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2024 at 04:04 PM
+-- Generation Time: Jan 07, 2024 at 04:23 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -28,7 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `advance_studies` (
-  `reason_adv_studies` enum('For Promotion','For Professional Development','Others') NOT NULL
+  `reason_adv_studies` enum('For Promotion','For Professional Development','Others') NOT NULL,
+  `id` int(11) NOT NULL,
+  `studies_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -84,7 +86,7 @@ CREATE TABLE `employed` (
 
 INSERT INTO `employed` (`id`, `year`, `user_employed`, `user_unemployed`) VALUES
 (7, 2021, 1, 0),
-(13, 2022, 1, 1),
+(13, 2022, 0, 0),
 (14, 2023, 1, 1),
 (15, 2024, 0, 0);
 
@@ -110,7 +112,9 @@ CREATE TABLE `employment_data` (
   `until_firstjob` enum('Less than a month','1 to 6 months','7 to 11 months','1 year to less than 2 years','2 years to less than 3 years','3 years to less than 4 years') NOT NULL,
   `initial_gorss_monthly_firstjob` enum('Below P5,000.00','P5,000.00 to less than P10,000.00','P10,000.00 to less than P15,000.00','P15,000 to less than P20,000.00','P20,000.00 to less than P25,000.00','P25,000.00 and above') NOT NULL,
   `is_relevantfirst` enum('Yes','No') NOT NULL,
-  `useful_onfirstjob` enum('Communication Skills','Human Relation Skills','Entrepreneurial Skills','Information Technology skills','Problem-solving skills','Critical thinking skills') NOT NULL
+  `useful_onfirstjob` enum('Communication Skills','Human Relation Skills','Entrepreneurial Skills','Information Technology skills','Problem-solving skills','Critical thinking skills') NOT NULL,
+  `id` int(11) NOT NULL,
+  `employment_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -149,7 +153,9 @@ INSERT INTO `newsfeed` (`news_id`, `user_id`, `message`, `status_nf`, `image_nf`
 CREATE TABLE `prof_exam_passed` (
   `name` varchar(255) NOT NULL,
   `date_taken` date NOT NULL,
-  `rating` varchar(12) NOT NULL
+  `rating` varchar(12) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `ched_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -189,6 +195,13 @@ INSERT INTO `users` (`user_id`, `StudentNo`, `First_Name`, `Last_Name`, `Sex`, `
 --
 
 --
+-- Indexes for table `advance_studies`
+--
+ALTER TABLE `advance_studies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ched_id_study` (`studies_id`);
+
+--
 -- Indexes for table `ched`
 --
 ALTER TABLE `ched`
@@ -208,11 +221,25 @@ ALTER TABLE `employed`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `employment_data`
+--
+ALTER TABLE `employment_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ched_id_employ` (`employment_id`);
+
+--
 -- Indexes for table `newsfeed`
 --
 ALTER TABLE `newsfeed`
   ADD PRIMARY KEY (`news_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `prof_exam_passed`
+--
+ALTER TABLE `prof_exam_passed`
+  ADD PRIMARY KEY (`exam_id`),
+  ADD KEY `ched_id_exam` (`ched_id`);
 
 --
 -- Indexes for table `users`
@@ -223,6 +250,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `advance_studies`
+--
+ALTER TABLE `advance_studies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ched`
@@ -243,20 +276,38 @@ ALTER TABLE `employed`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `employment_data`
+--
+ALTER TABLE `employment_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `newsfeed`
 --
 ALTER TABLE `newsfeed`
   MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
+-- AUTO_INCREMENT for table `prof_exam_passed`
+--
+ALTER TABLE `prof_exam_passed`
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `advance_studies`
+--
+ALTER TABLE `advance_studies`
+  ADD CONSTRAINT `ched_id_study` FOREIGN KEY (`studies_id`) REFERENCES `ched` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `educ_attainment`
@@ -265,10 +316,22 @@ ALTER TABLE `educ_attainment`
   ADD CONSTRAINT `ched_id` FOREIGN KEY (`ched_id`) REFERENCES `ched` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `employment_data`
+--
+ALTER TABLE `employment_data`
+  ADD CONSTRAINT `ched_id_employ` FOREIGN KEY (`employment_id`) REFERENCES `ched` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `newsfeed`
 --
 ALTER TABLE `newsfeed`
   ADD CONSTRAINT `newsfeed_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Constraints for table `prof_exam_passed`
+--
+ALTER TABLE `prof_exam_passed`
+  ADD CONSTRAINT `ched_id_exam` FOREIGN KEY (`ched_id`) REFERENCES `ched` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

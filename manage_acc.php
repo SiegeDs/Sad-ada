@@ -56,7 +56,7 @@ $post_results = mysqli_query($conn, $sql_post);
         <div class="container">
           <div class="d-flex justify-content-between">
             <div class="text">
-              GRADUATES’ TRACING <br />
+              GRADUATES' TRACING <br />
               SYSTEM <img src="./images/snowflake.png" class="w-5%" />
             </div>
             <nav class="nav m-2">
@@ -126,9 +126,9 @@ $post_results = mysqli_query($conn, $sql_post);
         </div>
       </div>
     </nav>
-
+<!-- End of navbar-->
     <button type="button" class="btn btn-warning mb-2" style="margin-top: 150px; margin-left: 1100px;" id="create" data-toggle="modal"
-              data-target="#CreateModal">Create</button>
+              data-target="#CreateModal" onclick="setModalMode('create')">Create</button>
     <table class="table" style=" max-width: 800px; margin-left: 390px">
                   <thead>
                     <tr class="table-dark">
@@ -156,15 +156,17 @@ $post_results = mysqli_query($conn, $sql_post);
                       </td>
                       <td>
                         <button type="button" class="btn btn-warning" data-toggle="modal"
-              data-target="#EventModal">Edit</button>
-                      <button type="button" class="btn btn-danger" > Delete</button>
+              data-target="#CreateModal" onclick="setModalMode('update')">Edit</button>
+                      <button type="button" class="btn btn-danger" onclick="deleteAcc(<?=$post['StudentNo']?>)"> Delete</button>
                       </td>
                     </tr>
                     <?php endwhile?>
                   </tbody>
                 </table>
                 
-    <div
+    
+    
+<div
       class="modal fade modal-m"
       id="CreateModal"
       tabindex="-1"
@@ -192,75 +194,104 @@ $post_results = mysqli_query($conn, $sql_post);
             </button>
           </div>
           <div class="modal-body">
-            <form>
-            <input class="my-3 form-control" type="text" name="first_name_modal" placeholder="First Name"/>
-            <input class="my-3 form-control" type="text" name="first_name_modal" placeholder="Last Name"/>
-            <input class="my-3 form-control" type="text" name="first_name_modal" placeholder="Student Number"/>
-            <input class="my-3 form-control" type="text" name="first_name_modal" placeholder="Year Graduated"/>
-            <input class="my-3 form-control" type="text" name="first_name_modal" placeholder="Password"/>
-            </form>
+            <p class="fs-3">
+                        Sign Up | <span class="fs-6">Don't have an Account?</span><span class="fs-5 bold"> Sign In</span>
+                    </p>
+                    <div class="container text-center">
+
+                        <div class="row">
+                            <div class="col">
+                                <input class="my-3 form-control" type="text" id="first_name" placeholder="First Name" required />
+                                <input class="my-3 form-control" type="date" id="date_of_birth" placeholder="Date of Birth" required />
+                                <input class="my-3 form-control" type="number" id="contact_no" placeholder="Contact No." required />
+                                <input class="my-3 form-control" type="text" id="year_graduated" placeholder="Year Graduated" required />
+                                <!-- <input class="my-3 form-control" type="text" name="password" id="password" placeholder="Password" /> -->
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="current-password">
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePasswordBtn" onclick="togglePasswordVisibility('password', 'togglePasswordBtn')">Show</button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <input class="my-3 form-control" type="text" id="last_name" placeholder="Last Name" required />
+                                <div class="my-3">
+                                    <select class="form-select" id="sexSelect" name="sex">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <input class="my-3 form-control" type="text" id="current_address" placeholder="Current Address" required />
+                                <input class="my-3 form-control" type="number" id="student_no" placeholder="Student No." required />
+                            </div>
+                        </div>
+                    </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" name="create" value="create" id="create" class="btn btn-primary">Create</button>
+            <button type="button" name="create" value="create" id="create" class="btn btn-primary">Create</button>
+            <button type="button" name="update" value="update" id="update" class="btn btn-primary">Update</button>
 
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="dismiss_modal">Cancel</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="container text-center">
-    <div class="row">
-        <div class="col">
-            <div class="modal" id="EventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form method="post">
-                            <div class="modal-header" style="background-color: #0A0876; color: #fff;">
-                                <h5 class="modal-title" id="title">Update information</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <input class="my-3 form-control" type="text" name="first_name_modal" placeholder="First Name" value="<?php echo $First_Name ?>" required />
-                                <input class="my-3 form-control" type="text" name="last_name_modal" placeholder="Last Name" value="<?php echo $Last_Name ?>" required />
-                                <input class="my-3 form-control" type="text" name="year_graduated_modal" placeholder="Year Graduated" value="<?php echo $YearGraduate ?>" required />
-                                <div class="input-group">
-                                    <input type="password" class="form-control" name="password_modal" id="password" placeholder="Password" autocomplete="current-password" value="<?php echo $CurrentAddress ?>">
-                                    <button class="btn btn-outline-secondary" type="button" id="togglePasswordBtn" onclick="togglePasswordVisibility('password', 'togglePasswordBtn')">Show</button>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="confim_success"  style="display: none;">Confirm</button> -->
-                                <button type="submit" name="update" value="update" class="btn btn-primary" onclick="reloadPage()">Save changes</button>
-
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="dismiss_modal">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
+  function setModalMode(state) {
+switch (state) {
+            case "update":
+                document.getElementById('update').show();
+                document.getElementById('create').hide();
+                break;
+            case "create":
+                document.getElementById('update').hide();
+                document.getElementById('create').show();
+                break;
+            default:
+                break;
+        }
+  }
     document.getElementById('EventModal').addEventListener('click', function() {
         let successModal = new bootstrap.Modal(document.getElementById('success_modal'));
         successModal.show();
     });
 </script>
     <script>
-    document.getElementById('create').addEventListener('click', function(event) {   
+      function deleteAcc(stud_no) {
+        var formData = new FormData();
+        formData.append('student_no', stud_no);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'delete_student.php', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log("Delete successful!");
+                window.location.href = "manage_acc.php";
+            } else {
+                console.log("Error Password: ");
+            }
+        };
+        xhr.send(formData);
+      }
+      // creates an account for another user
+      document.getElementById('create').addEventListener('click', function(event) {   
         event.preventDefault(); // Prevent the default form submission
 
         var first_name = document.getElementById('first_name').value;
+        var date_of_birth = document.getElementById('date_of_birth').value;
+        var contact_no = document.getElementById('contact_no').value;
         var year_graduated = document.getElementById('year_graduated').value;
+        var password = document.getElementById('password').value;
         var last_name = document.getElementById('last_name').value;
+        var sexSelect = document.getElementById('sexSelect').value;
+        var current_address = document.getElementById('current_address').value;
         var student_no = document.getElementById('student_no').value;
 
-        console.log('SIGN UP year_graduated' + year_graduated);
-
         if (first_name === "" ||
+            date_of_birth === "" ||
+            contact_no === "" ||
             year_graduated === "" ||
+            password === "" ||
             last_name === "" ||
+            sexSelect === "" ||
+            current_address === "" ||
             student_no === ""
         ) {
             // Do something if first_name is empty
@@ -268,8 +299,61 @@ $post_results = mysqli_query($conn, $sql_post);
         }
         var formData = new FormData();
         formData.append('first_name', first_name);
+        formData.append('date_of_birth', date_of_birth);
+        formData.append('contact_no', contact_no);
         formData.append('year_graduated', year_graduated);
+        formData.append('password', password);
         formData.append('last_name', last_name);
+        formData.append('sexSelect', sexSelect);
+        formData.append('current_address', current_address);
+        formData.append('student_no', student_no);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'sign_up_student.php', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log("User registration successful!");
+                window.location.href = "manage_acc.php";
+            } else {
+                console.log("Error Password: ");
+            }
+        };
+        xhr.send(formData);
+    });
+
+    document.getElementById('update').addEventListener('click', function(event) {event.preventDefault(); // Prevent the default form submission
+
+        var first_name = document.getElementById('first_name').value;
+        var date_of_birth = document.getElementById('date_of_birth').value;
+        var contact_no = document.getElementById('contact_no').value;
+        var year_graduated = document.getElementById('year_graduated').value;
+        var password = document.getElementById('password').value;
+        var last_name = document.getElementById('last_name').value;
+        var sexSelect = document.getElementById('sexSelect').value;
+        var current_address = document.getElementById('current_address').value;
+        var student_no = document.getElementById('student_no').value;
+
+        if (first_name === "" ||
+            date_of_birth === "" ||
+            contact_no === "" ||
+            year_graduated === "" ||
+            password === "" ||
+            last_name === "" ||
+            sexSelect === "" ||
+            current_address === "" ||
+            student_no === ""
+        ) {
+            // Do something if first_name is empty
+            return;
+        }
+        var formData = new FormData();
+        formData.append('first_name', first_name);
+        formData.append('date_of_birth', date_of_birth);
+        formData.append('contact_no', contact_no);
+        formData.append('year_graduated', year_graduated);
+        formData.append('password', password);
+        formData.append('last_name', last_name);
+        formData.append('sexSelect', sexSelect);
+        formData.append('current_address', current_address);
         formData.append('student_no', student_no);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'sign_up_student.php', true);

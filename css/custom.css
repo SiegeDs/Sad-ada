@@ -1,9 +1,40 @@
 :root {
   --background: #f1f2e8;
+  --background2: #dde0c7;
+  --textcolor: #272d5e;
 }
 
 body {
   background-color: var(--background);
+}
+
+.subtle {
+  color: var(--textcolor);
+}
+
+.feature {
+  background-color: var(--background2);
+  border-top-left-radius: 50px;
+}
+
+.feature img {
+  width: 40%;
+  position: absolute;
+  top: -20%;
+  right: -10%;
+}
+
+.btn-iconed img {
+  width: 2rem;
+}
+
+.shadowed {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.avatar-post {
+  width: 50px;
+  height: 50px;
 }
 
 .text {

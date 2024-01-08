@@ -24,7 +24,7 @@
                     </div>
                     <div class="nav">
                         <a class="btn <?= (($title == 'Sign in') ? 'btn-light"' : "btn-dark") ?>" href="signin.php">Sign In</a>
-                        <a class="btn <?= (($title == 'Sign up') ? 'btn-light"' : "btn-dark") ?>" href="signup.php">Sign Up</a>
+                        <!--a class="btn <!?= (($title == 'Sign up') ? 'btn-light"' : "btn-dark") ?>" href="signup.php">Sign Up</a-->
                     </div>
                 </div>
             </div>

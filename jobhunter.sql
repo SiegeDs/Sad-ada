@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2024 at 04:23 PM
+-- Generation Time: Jan 08, 2024 at 04:47 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -33,6 +33,13 @@ CREATE TABLE `advance_studies` (
   `studies_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `advance_studies`
+--
+
+INSERT INTO `advance_studies` (`reason_adv_studies`, `id`, `studies_id`) VALUES
+('For Promotion', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +58,13 @@ CREATE TABLE `ched` (
   `residence` varchar(255) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ched`
+--
+
+INSERT INTO `ched` (`perm_address`, `contact_num`, `mobile_num`, `civil_stat`, `sex`, `birthday`, `region_origin`, `province`, `residence`, `id`) VALUES
+('dlaksdl12332', '12312412312', '123123123', 'single parent', 'Male', '2024-01-10', 'Region 10', '12342543', '123124', 1);
 
 -- --------------------------------------------------------
 
@@ -117,6 +131,14 @@ CREATE TABLE `employment_data` (
   `employment_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `employment_data`
+--
+
+INSERT INTO `employment_data` (`now_employed`, `employment_status`, `skills_if_self`, `occupation_now`, `major_business_line`, `workplace`, `is_firstjob`, `is_aftercollege`, `reasons_accept_job`, `reasons_change_job`, `length_firstjob`, `how_firstjob`, `until_firstjob`, `initial_gorss_monthly_firstjob`, `is_relevantfirst`, `useful_onfirstjob`, `id`, `employment_id`) VALUES
+('Yes', 'Regular', 'fdasf', 'fadfs', 'Mining and Quarrying', 'Local', 'No', 'No', 'Career Challenge', 'Salaries & benefits', '7 to 11 months', 'Recommended by someone', 'Less than a month', 'P5,000.00 to less than P10,000.00', 'Yes', 'Human Relation Skills', 4, 1),
+('Yes', 'Temporary', 'asdasd', 'asdasd', 'Public Administration and Defense; Compulsory Social Security', 'Local', 'Yes', 'Yes', 'Related to special skills', 'Salaries & benefits', '1 to 6 months', 'Information from friends Office (PESO)', '2 years to less than 3 years', 'P10,000.00 to less than P15,000.00', 'Yes', 'Entrepreneurial Skills', 5, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -136,13 +158,15 @@ CREATE TABLE `newsfeed` (
 --
 
 INSERT INTO `newsfeed` (`news_id`, `user_id`, `message`, `status_nf`, `image_nf`) VALUES
-(35, 1, 'asdas', 'pending', ''),
+(35, 1, 'asdas', 'approved', ''),
 (47, 2, 'awda', 'approved', ''),
 (48, 2, 'asdasd', 'approved', ''),
 (49, 2, 'THIS IS TEST', 'approved', 'MainLogo.png'),
 (50, 2, 'This is test', 'pending', 'MainLogo.png'),
 (51, 1, 'open', 'approved', 'image 57 (1).png'),
-(52, 2, 'open', 'approved', 'Warsaw_Pact_Logo.svg.png');
+(52, 2, 'open', 'approved', 'Warsaw_Pact_Logo.svg.png'),
+(53, 1, 'hello', 'pending', '406034742_1399621654287631_5206589174376331189_n.jpg'),
+(54, 2, '', 'approved', '406034742_1399621654287631_5206589174376331189_n.jpg');
 
 -- --------------------------------------------------------
 
@@ -255,13 +279,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `advance_studies`
 --
 ALTER TABLE `advance_studies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ched`
 --
 ALTER TABLE `ched`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `educ_attainment`
@@ -279,13 +303,13 @@ ALTER TABLE `employed`
 -- AUTO_INCREMENT for table `employment_data`
 --
 ALTER TABLE `employment_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `newsfeed`
 --
 ALTER TABLE `newsfeed`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `prof_exam_passed`

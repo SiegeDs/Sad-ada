@@ -94,7 +94,7 @@ ob_start();
             </div>
         </div>
         <div class="col m-4">
-            <div class="shadowed bg-white rounded-3 d-flex justify-content-around" style="max-width: 500px">
+            <div class="shadowed bg-white rounded-3 d-flex justify-content-around">
                 <button type="button" class="p-1 btn btn-iconed" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <img src="./images/gallery.png" />
                     Media
@@ -109,27 +109,28 @@ ob_start();
                 </button>
             </div>
             <?php while ($post = $post_results->fetch_assoc()) : ?>
-                <div class="bg-white shadowed rounded-3 my-4 d-flex flex-column" style="max-height: 500px; max-width: 500px">
+                <div class="bg-white shadowed rounded-3 my-4 d-flex flex-column">
                     <!-- Upper Section with Image and Name -->
                     <div class="p-2 d-flex align-items-center border-bottom gap-2">
                         <img src="<?= $image ?>" alt="Profile Image" class="rounded-circle avatar-post">
                         <span class="fw-bold"><?= $post['First_Name'] . ' ' . $post['Last_Name'] ?></span>
                     </div>
                     <!-- Center Section with Message and Image -->
-                    <div class="p-5 d-flex flex-column justify-content-center">
+                    <div class="p-2">
                         <?php if ($post['message']) : ?>
                             <p><?= $post['message'] ?></p>
                         <?php endif ?>
-                        <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="rounded-2" style="max-height: 300px; width: 400px;">
+                        <?php if ($post['image_nf']) : ?>
+                            <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="rounded-2 w-100">
+                        <?php endif ?>
                     </div>
                 </div>
             <?php endwhile ?>
         </div>
-        <div class="col-3">
+        <div class=" col-3">
             <div class="align-baseline bg-white shadowed rounded-4 d-flex flex-column align-items-start">
                 <p class="h5 p-4">
                 <form class="w-100">
-
                     <div id="piechart" class="w-100"></div>
                     <div class="p-4">
                         <label for="year">Select Year:</label>
@@ -155,10 +156,41 @@ ob_start();
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <dixv class="modal-content">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Job Offer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input class="my-3 form-control" type="text" id="post_text" name="post_text" placeholder="Type a Job offer.">
+                    <input type="file" id="imgload" name="image">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="upload" value="Upload" class="btn btn-primary" onclick="reloadPage()">Upload post</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+    </div>
+</div>
 <script>
+    /*document.getElementById('imgload').addEventListener("change", function(e) {
+        loadImageFile(e)
+    })*/
+    const reader = new FileReader();
+
     function reloadPage() {
         location.reload();
+    }
+
+    function loadImageFile(e) {
+        let file = e.target.files[0];
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            $('#imgencoded').val(event.target.result);
+        };
     }
 </script>
 

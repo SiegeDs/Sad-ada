@@ -41,44 +41,44 @@ $post_results = mysqli_query($conn, $sql_post);
 
 ob_start();
 ?>
-<!-- End of navbar-->
-<button type="button" class="btn btn-warning mb-2 mt-5" style="margin-left: 1100px;" data-bs-toggle="modal" data-bs-target="#CreateModal" onclick="setModalMode('create')">Create</button>
-<table class="table" style=" max-width: 800px; margin-left: 390px">
-  <thead>
-    <tr class="table-dark">
-      <th scope="col">User ID </th>
-      <th scope="col">Name</th>
-      <th scope="col">Student No.</th>
-      <th scope="col">Year Graduated</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php while ($post = $post_results->fetch_assoc()) : ?>
-      <tr>
-        <td>
-          <p> <?= $post['user_id'] ?> </p>
-        </td>
-        <td>
-          <p> <?= $post['First_Name'] . ' ' . $post['Last_Name'] ?> </p>
-        </td>
-        <td>
-          <p> <?= $post['StudentNo'] ?> </p>
-        </td>
-        <td>
-          <p> <?= $post['YearGraduate'] ?> </p>
-        </td>
-        <td>
-          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CreateModal" onclick="setModalMode('update', '<?= $post['StudentNo'] ?>')">Edit</button>
-          <button type="button" class="btn btn-danger" onclick="deleteAcc('<?= $post['StudentNo'] ?>')"> Delete</button>
-        </td>
+<div class="container">
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-warning mb-2 mt-5" data-bs-toggle="modal" data-bs-target="#CreateModal" onclick="setModalMode('create')">Create</button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">User ID </th>
+        <th scope="col">Name</th>
+        <th scope="col">Student No.</th>
+        <th scope="col">Year Graduated</th>
+        <th scope="col">Action</th>
       </tr>
-    <?php endwhile ?>
-  </tbody>
-</table>
-
-
-
+    </thead>
+    <tbody>
+      <?php while ($post = $post_results->fetch_assoc()) : ?>
+        <tr>
+          <td>
+            <p> <?= $post['user_id'] ?> </p>
+          </td>
+          <td>
+            <p> <?= $post['First_Name'] . ' ' . $post['Last_Name'] ?> </p>
+          </td>
+          <td>
+            <p> <?= $post['StudentNo'] ?> </p>
+          </td>
+          <td>
+            <p> <?= $post['YearGraduate'] ?> </p>
+          </td>
+          <td class="d-flex gap-1">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CreateModal" onclick="setModalMode('update', '<?= $post['StudentNo'] ?>')">Edit</button>
+            <button type="button" class="btn btn-danger" onclick="deleteAcc('<?= $post['StudentNo'] ?>')"> Delete</button>
+          </td>
+        </tr>
+      <?php endwhile ?>
+    </tbody>
+  </table>
+</div>
 <div class="modal fade modal-m" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -157,6 +157,18 @@ ob_start();
       }
     };
     xhr.send(formData);
+  }
+
+  function newAcc() {
+
+    $('#first_name').val("");
+    $('#date_of_birth').val("");
+    $('#contact_no').val("");
+    $('#year_graduated').val("");
+    $('#password').val("");
+    $('#last_name').val("");
+    $('#current_address').val("");
+    $('#student_no').val("");
   }
 
   function loadAcc(stud_no) {
@@ -281,6 +293,19 @@ ob_start();
     };
     xhr.send(formData);
   });
+
+  function togglePasswordVisibility(passwordFieldId, toggleButtonId) {
+    var passwordField = document.getElementById(passwordFieldId);
+    var toggleButton = document.getElementById(toggleButtonId);
+
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      toggleButton.textContent = "Hide";
+    } else {
+      passwordField.type = "password";
+      toggleButton.textContent = "Show";
+    }
+  }
 </script>
 </body>
 <?php

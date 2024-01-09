@@ -156,10 +156,41 @@ ob_start();
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <dixv class="modal-content">
+            <form method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Job Offer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input class="my-3 form-control" type="text" id="post_text" name="post_text" placeholder="Type a Job offer.">
+                    <input type="file" id="imgload" name="image">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="upload" value="Upload" class="btn btn-primary" onclick="reloadPage()">Upload post</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+    </div>
+</div>
 <script>
+    /*document.getElementById('imgload').addEventListener("change", function(e) {
+        loadImageFile(e)
+    })*/
+    const reader = new FileReader();
+
     function reloadPage() {
         location.reload();
+    }
+
+    function loadImageFile(e) {
+        let file = e.target.files[0];
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            $('#imgencoded').val(event.target.result);
+        };
     }
 </script>
 

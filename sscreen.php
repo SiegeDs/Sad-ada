@@ -166,36 +166,6 @@ ob_start();
 
 
 <script>
-    function approveRequest(newsID, notificationId, status) {
-        console.log('as');
-        // Send an AJAX request to update the status to 'approved'
-        console.log(newsID);
-        console.log(notificationId);
-        console.log(status);
-        // let successModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-        //         successModal.show();
-        $.ajax({
-            type: 'POST',
-            url: 'update_status.php', // Replace with the actual server-side script
-            data: {
-                newsID: newsID,
-                notificationId: notificationId,
-                status: status
-
-            },
-            success: function(response) {
-                // Handle the response if needed
-                console.log(response);
-            },
-            error: function(error) {
-                // Handle the error if needed
-                console.error(error);
-            }
-        });
-
-
-    }
-
     // function showModal(image, First_Name, Last_Name, message, image_nf) {
     //         console.log(image);
     //         console.log(First_Name);

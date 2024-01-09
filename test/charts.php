@@ -29,10 +29,11 @@ while ($rowYears = mysqli_fetch_assoc($resultYears)) {
             <?php
             if (isset($_GET['year'])) {
                 $selectedYear = $_GET['year'];
-                $sqlData = "SELECT user_employed, user_unemployed FROM employed WHERE year = $selectedYear";
+                $sqlData = "SELECT user_employed, user_unemployed FROM employed JOIN employment_data WHERE year = $selectedYear";
                 $resultData = mysqli_query($conn, $sqlData);
                 $row = mysqli_fetch_assoc($resultData);
                 $employedCount = $row['user_employed'];
+                $unemployedCount = $row['user_unemployed'];
                 $unemployedCount = $row['user_unemployed'];
                 echo "data.addRows([['Employed', $employedCount], ['Unemployed', $unemployedCount]]);";
             }

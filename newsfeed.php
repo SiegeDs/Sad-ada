@@ -16,7 +16,12 @@ $years = array();
 while ($rowYears = mysqli_fetch_assoc($resultYears)) {
     $years[] = $rowYears['year'];
 }
-
+$sqlemploymentLength = "SELECT DISTINCT length_firstjob FROM employment_data";
+$resultemploymentLength = mysqli_query($conn, $sqlemploymentLength);
+$emloyementLength = array();
+while ($rowLength = mysqli_fetch_assoc($resultemploymentLength)) {
+    $emloyementLength[] = $rowLength['length_firstjob'];
+}
 
 
 $sql = "SELECT * FROM `users` WHERE `StudentNo` = '$login_user'";
@@ -69,36 +74,27 @@ ob_start();
     <div class="row">
         <div class="col-3">
             <div class="align-baseline bg-white shadowed rounded-4 d-flex flex-column align-items-start">
-                <button type="button" class="p-3 btn btn-iconed d-flex gap-2 align-items-center">
-                    <img src="./images/upload.png" />
-                    <span>Upload Job Offer</span>
-                </button>
-                <button type="button" class="p-3 btn btn-iconed d-flex gap-2 align-items-center">
+                <a type="button" class="p-3 btn btn-iconed d-flex gap-2 align-items-center " href="JobPreferences.php">
                     <img src="./images/add.png" />
                     <span>Job Preferences</span>
-                </button>
+
+                </a>
                 <form class="w-100">
-
-                    <div id="piechart" class="w-100"></div>
-                    <div class="px-4">
-                        <label for="year">Select Year:</label>
-                        <div class="d-flex">
-                            <select class="form-select align-self-end" id="year" name="year" onchange="drawChart(this.value)">
-                                <option value=""> Select</option>
-                                <?php foreach ($years as $year) { ?>
-                                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                                <?php } ?>
-                            </select>
-                            <input type="submit" value="Submit">
-                        </div>
+                    <div class="p-4">
+                        <label for="year"> Graduates</label>
                     </div>
+                    <div id="piechart_graduate" class="w-100"></div>
                 </form>
-
-
+                <form class="w-100">
+                    <div class="p-4">
+                        <label for="year"> Employment Status</label>
+                    </div>
+                    <div id="piechart_status" class="w-100"></div>
+                </form>
             </div>
         </div>
-        <div class="col">
-            <div class="shadowed bg-white rounded-3 d-flex justify-content-around">
+        <div class="col m-4">
+            <div class="shadowed bg-white rounded-3 d-flex justify-content-around" style="max-width: 500px">
                 <button type="button" class="p-1 btn btn-iconed" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <img src="./images/gallery.png" />
                     Media
@@ -113,18 +109,18 @@ ob_start();
                 </button>
             </div>
             <?php while ($post = $post_results->fetch_assoc()) : ?>
-                <div class="bg-white shadowed rounded-3 my-4" style="max-height: 500px;">
+                <div class="bg-white shadowed rounded-3 my-4 d-flex flex-column" style="max-height: 500px; max-width: 500px">
                     <!-- Upper Section with Image and Name -->
                     <div class="p-2 d-flex align-items-center border-bottom gap-2">
                         <img src="<?= $image ?>" alt="Profile Image" class="rounded-circle avatar-post">
                         <span class="fw-bold"><?= $post['First_Name'] . ' ' . $post['Last_Name'] ?></span>
                     </div>
                     <!-- Center Section with Message and Image -->
-                    <div class="p-5 d-flex flex-column">
+                    <div class="p-5 d-flex flex-column justify-content-center">
                         <?php if ($post['message']) : ?>
                             <p><?= $post['message'] ?></p>
                         <?php endif ?>
-                        <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="rounded-2" style="max-height: 200px; max-width: 200px;">
+                        <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="rounded-2" style="max-height: 300px; width: 400px;">
                     </div>
                 </div>
             <?php endwhile ?>
@@ -132,31 +128,31 @@ ob_start();
         <div class="col-3">
             <div class="align-baseline bg-white shadowed rounded-4 d-flex flex-column align-items-start">
                 <p class="h5 p-4">
-                    Announcements
+                <form class="w-100">
+
+                    <div id="piechart" class="w-100"></div>
+                    <div class="p-4">
+                        <label for="year">Select Year:</label>
+                        <div class="d-flex">
+                            <select class="form-select align-self-end" id="year" name="year" onchange="drawChart(this.value)">
+                                <option value=""> Select</option>
+                                <?php foreach ($years as $year) { ?>
+                                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                                <?php } ?>
+                            </select>
+                            <input class="btn btn-success" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+                <form class="w-100">
+                    <div id="piechart_firstjob" class="w-100"></div>
+                    <div class="p-4">
+                        <label for="year"> Length of First Job</label>
+                    </div>
+                </form>
                 </p>
             </div>
         </div>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <dixv class="modal-content">
-            <form method="post" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <h5 class="modal-title">Upload Job Offer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input class="my-3 form-control" type="text" id="post_text" name="post_text" placeholder="Type a Job offer.">
-                    <input type="file" name="image">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="upload" value="Upload" class="btn btn-primary" onclick="reloadPage()">Save changes</button>
-
-                </div>
-            </form>
     </div>
 </div>
 
@@ -231,6 +227,100 @@ ob_start();
         chart.draw(data, options);
     }
 </script>
+<script type="text/javascript">
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart2() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Status');
+        data.addColumn('number', 'Count');
+
+
+        <?php
+        $sqlData = "SELECT length_firstjob, COUNT(*) AS length_first FROM employment_data GROUP BY length_firstjob";
+        $resultData = mysqli_query($conn, $sqlData);
+        while ($row = $resultData->fetch_assoc()) {
+            $firstjob_label = $row['length_firstjob'];
+            $firstjob_count = $row['length_first'];
+            echo "data.addRow(['$firstjob_label', $firstjob_count]);";
+            echo "console.log('$firstjob_label $firstjob_count');";
+            //done2
+        }
+        ?>
+
+        var options = {
+            title: 'Length to find First Job '
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart_firstjob'));
+
+        chart2.draw(data, options);
+    }
+    drawChart2();
+</script>
+<script type="text/javascript">
+    google.charts.setOnLoadCallback(drawChart3);
+
+    function drawChart3() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Status');
+        data.addColumn('number', 'Count');
+
+
+        <?php
+        $sqlData = "SELECT YearGraduate, COUNT(*) AS grad FROM users GROUP BY YearGraduate";
+        $resultData = mysqli_query($conn, $sqlData);
+        while ($row = $resultData->fetch_assoc()) {
+            $yearGraduate_label = $row['YearGraduate'];
+            $yearGraduate_count = $row['grad'];
+            echo "data.addRow(['$yearGraduate_label', $yearGraduate_count]);";
+            echo "console.log('$yearGraduate_label $yearGraduate_count');";
+            //done2
+        }
+        ?>
+
+        var options = {
+
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart_graduate'));
+
+        chart2.draw(data, options);
+    }
+    drawChart3();
+</script>
+<script type="text/javascript">
+    google.charts.setOnLoadCallback(drawChart4);
+
+    function drawChart4() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Status');
+        data.addColumn('number', 'Count');
+
+
+        <?php
+        $sqlData = "SELECT employment_status, COUNT(*) AS stat FROM employment_data GROUP BY employment_status";
+        $resultData = mysqli_query($conn, $sqlData);
+        while ($row = $resultData->fetch_assoc()) {
+            $status_label = $row['employment_status'];
+            $status_count = $row['stat'];
+            echo "data.addRow(['$status_label', $status_count]);";
+            echo "console.log('$status_label $status_count');";
+            //done2
+        }
+        ?>
+
+        var options = {
+
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart_status'));
+
+        chart2.draw(data, options);
+    }
+    drawChart4();
+</script>
+
 <!--End of Tawk.to Script-->
 <?php
 $content = ob_get_clean();

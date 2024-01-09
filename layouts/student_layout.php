@@ -20,9 +20,11 @@
                         SYSTEM <img src="./images/snowflake.png" width="20" />
                     </div>
                     <nav class="nav m-2">
-                        <a class="nav-link <?= (($title == 'Manage Accounts') ? 'active text-warning' : "text-light") ?>" aria-current="page" href="manage_acc.php">
-                            Manage Account
-                        </a>
+                        <?php if ($user_login === 'admin') : ?>
+                            <a class="nav-link <?= (($title == 'Manage Accounts') ? 'active text-warning' : "text-light") ?>" aria-current="page" href="manage_acc.php">
+                                Manage Account
+                            </a>
+                        <?php endif ?>
                         <a class="nav-link <?= (($title == 'Newsfeed') ? 'active text-warning' : "text-light") ?>" href="newsfeed.php">
                             Newsfeed
                         </a>
@@ -156,6 +158,35 @@
 
         // Update the date and time every minute (60000 milliseconds)
         setInterval(updateDateTime, 60000);
+
+        function approveRequest(newsID, notificationId, status) {
+            console.log('as');
+            // Send an AJAX request to update the status to 'approved'
+            console.log(newsID);
+            console.log(notificationId);
+            console.log(status);
+            // let successModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            //         successModal.show();
+            $.ajax({
+                type: 'POST',
+                url: 'update_status.php', // Replace with the actual server-side script
+                data: {
+                    newsID: newsID,
+                    notificationId: notificationId,
+                    status: status
+
+                },
+                success: function(response) {
+                    // Handle the response if needed
+                    console.log(response);
+                },
+                error: function(error) {
+                    // Handle the error if needed
+                    console.error(error);
+                }
+            });
+            location.reload();
+        }
     </script>
 </body>
 

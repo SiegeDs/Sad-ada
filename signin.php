@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["user_type"] = 'student';
                 }
                 $_SESSION["Login_id"] = $student_no;
-                header("Location: sscreen.php");
+                header("Location: newsfeed.php");
 
 
                 // You can include additional logic or display a success message here

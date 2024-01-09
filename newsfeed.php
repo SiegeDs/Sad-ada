@@ -93,8 +93,8 @@ ob_start();
                 </form>
             </div>
         </div>
-        <div class="col">
-            <div class="shadowed bg-white rounded-3 d-flex justify-content-around">
+        <div class="col m-4">
+            <div class="shadowed bg-white rounded-3 d-flex justify-content-around" style="max-width: 500px">
                 <button type="button" class="p-1 btn btn-iconed" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <img src="./images/gallery.png" />
                     Media
@@ -109,18 +109,18 @@ ob_start();
                 </button>
             </div>
             <?php while ($post = $post_results->fetch_assoc()) : ?>
-                <div class="bg-white shadowed rounded-3 my-4" style="max-height: 500px;">
+                <div class="bg-white shadowed rounded-3 my-4 d-flex flex-column" style="max-height: 500px; max-width: 500px">
                     <!-- Upper Section with Image and Name -->
                     <div class="p-2 d-flex align-items-center border-bottom gap-2">
                         <img src="<?= $image ?>" alt="Profile Image" class="rounded-circle avatar-post">
                         <span class="fw-bold"><?= $post['First_Name'] . ' ' . $post['Last_Name'] ?></span>
                     </div>
                     <!-- Center Section with Message and Image -->
-                    <div class="p-5 d-flex flex-column">
+                    <div class="p-5 d-flex flex-column justify-content-center">
                         <?php if ($post['message']) : ?>
                             <p><?= $post['message'] ?></p>
                         <?php endif ?>
-                        <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="rounded-2" style="max-height: 200px; max-width: 200px;">
+                        <img src="<?= $post['image_nf'] ? $post['image_nf'] : "https://placehold.co/300x200"; ?>" alt="Center Image" class="rounded-2" style="max-height: 300px; width: 400px;">
                     </div>
                 </div>
             <?php endwhile ?>
